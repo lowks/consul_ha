@@ -1,0 +1,11 @@
+{
+  "service": {
+    "name": "healthy-primary",
+    "tags": [],
+    "port": 8675,
+    "check": {
+      "script": "./checks/always-up.py",
+      "interval": "5s"
+    }
+  }
+}
