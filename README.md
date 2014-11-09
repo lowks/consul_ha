@@ -40,7 +40,7 @@ class DatabaseHandler:
 Then, supply your initialized class to the a ConsulHa class:
 
 ```python
-import consulHA
+from consulHa import ConsulHa
 
 service_name = "my-database"   # must match service name in Consul
 demotion_delay_in_seconds = 60 # between 0 and 60 seconds
