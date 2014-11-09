@@ -11,27 +11,41 @@ This package is intended to run as a process along side each consul
 server.  Therefore, you should have a 1-1 ratio of consul server to
 process running this.
 
-First, define your functions for health checks:
+First, define your state handler for your monitored application or
+database:
 
 ```python
-def promote():
-  print "Take the action to promote this member."
+class DatabaseHandler:
+    def __init__(self):
+        self
 
-def demote(leader_ip):
-  print "Triggered by an event emitted from consul."
-  print "Take the action to follow the new leader."
+    def is_leader(self):
+      // determine if process is the leader
+      // returns boolean
 
-def is_leader:
-  return false;
+    def passes_health_requirements(self, members_array):
+      // determine if this member is healthy enough to become primary 
+      // returns boolean
 
-def follow_the_leader(leader_ip):
-  print "Ensure following the proper leader."
+    def promote(self):
+      // actions taken, which promotes this member to leadership
+
+    def demote(self, leader):
+      // actions taken to demote this member from leadership
+
+    def follow_the_leader(self, leader):
+      // actions taken to ensure secondary member is following proper leader
 ```
 
-Then, supply your functions to the `consul.run` method:
+Then, supply your initialized class to the a ConsulHa class:
 
 ```python
 import consulHA
 
-consulHA.run(promote, demote, is_leader, follow_the_leader)
+service_name = "my-database"   # must match service name in Consul
+demotion_delay_in_seconds = 60 # between 0 and 60 seconds
+
+consul_ha = ConsulHa(service_name, demotion_delay_in_seconds)
+consul_ha.state_handler = DatabaseHandler()
+consul_ha.run()
 ```
