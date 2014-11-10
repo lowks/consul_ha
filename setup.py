@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
+from os import environ
 
 here = path.abspath(path.dirname(__file__))
 
@@ -9,7 +10,7 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
 
 setup(
     name='consul-ha',
-    version='0.1.%s' % os.environ.get("CIRCLE_BUILD_NUM"),
+    version='0.1.%s' % environ.get("CIRCLE_BUILD_NUM"),
     url='https://github.com/mongohq/consul-ha',
     long_description=long_description,
     author='Chris Winslett',
