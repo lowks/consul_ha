@@ -4,7 +4,7 @@
     "tags": [],
     "port": 8675,
     "check": {
-      "script": "./checks/always-down.py",
+      "script": "./consul-test-config/checks/always-down.py",
       "interval": "5s"
     }
   }
