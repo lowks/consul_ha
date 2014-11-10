@@ -6,3 +6,12 @@ test:
     - "./consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul --config-dir=./consul-test-config/services --log-level=trace":
         background: true
     - sleep 10
+
+deployment:
+  production:
+    branch: master
+      commands:
+        - echo "[server-login]" > ~/.pypirc
+        - echo "username:" $PYPI_USER >> ~/.pypirc
+        - echo "password:" $PYPI_PASSWORD >> ~/.pypirc
+        - python setup.py sdist upload
