@@ -11,6 +11,7 @@ setup(
     url='https://github.com/mongohq/consul_ha',
     author='Chris Winslett',
     author_email='chris@compose.io',
+    description='Server for managing application state and high availability using Consul',
     license='MIT',
 
     classifiers=[
