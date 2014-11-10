@@ -3,7 +3,7 @@ import json
 import urllib2
 import time
 
-from consulHa import ConsulHa
+from consul_ha import ConsulHa
 
 class StateHandler:
     def __init__(self, responses):
