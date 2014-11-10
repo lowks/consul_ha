@@ -1,8 +1,6 @@
 test:
   pre:
-    - cd consul
     - rm -f consul consul.zip
     - wget https://dl.bintray.com/mitchellh/consul/0.4.1_linux_amd64.zip -O consul.zip
     - unzip consul.zip
-    - ./consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul --config-dir=./services --log-level=trace &> /dev/null
-    - cd ..
+    - ./consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul --config-dir=./consul-test-config/services --log-level=trace &> /dev/null
